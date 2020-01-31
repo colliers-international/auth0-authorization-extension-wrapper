@@ -18,6 +18,7 @@ export interface Auth0WrapperSettings {
 	auth0ClientSecret: string;
 	auth0Url: string;
 	auth0AuthExtensionUrl: string;
+	auth0Scope: string;
 }
 
 export class Auth0Wrapper {
@@ -45,7 +46,8 @@ export class Auth0Wrapper {
 			client_id: settings.auth0ClientId,
 			client_secret: settings.auth0ClientSecret,
 			audience: 'urn:auth0-authz-api',
-			grant_type: 'client_credentials'
+			grant_type: 'client_credentials',
+			scope: settings.auth0Scope,
 		};
 		let result = await request.post({
 			uri: settings.auth0Url + '/oauth/token',
